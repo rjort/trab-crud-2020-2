@@ -5,8 +5,8 @@ export declare class UsersService {
     private readonly userModel;
     constructor(userModel: Model<User>);
     getAllUsers(): Promise<User[]>;
-    getUser(userID: any): Promise<any>;
+    getUser(userID: String): Promise<any>;
     newUser(createUserDTO: CreateUserDTO): Promise<User>;
-    updateUser(userID: any, createUserDTO: CreateUserDTO): Promise<User>;
-    deleteUser(userID: any): Promise<any>;
+    updateUser(userID: String, createUserDTO: CreateUserDTO): Promise<User>;
+    deleteUser(userID: String): Promise<any>;
 }

@@ -9,27 +9,22 @@ export class UsersService {
   constructor(@InjectModel('User') private readonly userModel: Model<User>) { }
 
   async getAllUsers(): Promise<User[]> {
-    const users = await this.userModel.find().exec()
-    return users
+    return await this.userModel.find().exec()
   }
 
-  async getUser(userID): Promise<any> {
-    const user = await this.userModel.find(userID).exec()
-    return user
+  async getUser(userID: String): Promise<any> {
+    return await this.userModel.findById(userID).exec()
   }
 
   async newUser(createUserDTO: CreateUserDTO): Promise<User> {
-    const addUser = await new this.userModel(createUserDTO)
-    return addUser.save()
+    return await new this.userModel(createUserDTO).save()
   }
 
-  async updateUser(userID, createUserDTO: CreateUserDTO): Promise<User> {
-    const updatedUser = await this.userModel.findByIdAndUpdate(userID, createUserDTO, { new: true })
-    return updatedUser
+  async updateUser(userID: String, createUserDTO: CreateUserDTO): Promise<User> {
+    return await this.userModel.findByIdAndUpdate(userID, createUserDTO, { new: true })
   }
 
-  async deleteUser(userID): Promise<any> {
-    const deletedUser = await this.userModel.findByIdAndRemove(userID)
-    return deletedUser
+  async deleteUser(userID: String): Promise<any> {
+    return await this.userModel.findByIdAndRemove(userID)
   }
 }

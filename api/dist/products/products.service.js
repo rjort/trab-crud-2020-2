@@ -12,34 +12,34 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UsersService = void 0;
+exports.ProductsService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-let UsersService = class UsersService {
-    constructor(userModel) {
-        this.userModel = userModel;
+let ProductsService = class ProductsService {
+    constructor(productModel) {
+        this.productModel = productModel;
     }
-    async getAllUsers() {
-        return await this.userModel.find().exec();
+    async getAllProducts() {
+        return await this.productModel.find().exec();
     }
-    async getUser(userID) {
-        return await this.userModel.findById(userID).exec();
+    async getProduct(productId) {
+        return await this.productModel.findById(productId).exec();
     }
-    async newUser(createUserDTO) {
-        return await new this.userModel(createUserDTO).save();
+    async newProduct(createProductDTO) {
+        return await new this.productModel(createProductDTO).save();
     }
-    async updateUser(userID, createUserDTO) {
-        return await this.userModel.findByIdAndUpdate(userID, createUserDTO, { new: true });
+    async updateProduct(productId, createProductDTO) {
+        return await this.productModel.findByIdAndUpdate(productId, createProductDTO, { new: true });
     }
-    async deleteUser(userID) {
-        return await this.userModel.findByIdAndRemove(userID);
+    async deleteProduct(productId) {
+        return await this.productModel.findByIdAndRemove(productId);
     }
 };
-UsersService = __decorate([
+ProductsService = __decorate([
     common_1.Injectable(),
-    __param(0, mongoose_1.InjectModel('User')),
+    __param(0, mongoose_1.InjectModel('Product')),
     __metadata("design:paramtypes", [mongoose_2.Model])
-], UsersService);
-exports.UsersService = UsersService;
-//# sourceMappingURL=users.service.js.map
+], ProductsService);
+exports.ProductsService = ProductsService;
+//# sourceMappingURL=products.service.js.map

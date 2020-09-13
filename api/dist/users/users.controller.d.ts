@@ -5,7 +5,7 @@ export declare class UsersController {
     constructor(usersService: UsersService);
     createUser(res: any, createUserDTO: CreateUserDTO): Promise<any>;
     getAllUsers(res: any): Promise<any>;
-    getUser(res: any, userID: any): Promise<any>;
-    updateUser(res: any, userID: any, createUserDTO: CreateUserDTO): Promise<any>;
-    deleteUser(res: any, userID: any): Promise<any>;
+    getUser(res: any, userId: any): Promise<any>;
+    updateUser(res: any, userId: any, createUserDTO: CreateUserDTO): Promise<any>;
+    deleteUser(res: any, userId: any): Promise<any>;
 }
