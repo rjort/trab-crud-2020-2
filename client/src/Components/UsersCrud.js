@@ -8,12 +8,9 @@ export default function UserTable() {
       { title: 'Email', field: 'email' },
       { title: 'Phone', field: 'phone' }
     ],
-    //aqui ira rueceber as informacoes da API
     data: []
   })
 
-  // Tudo feito aqui foi com o exemplo do site do Material UI
-  // adaptar para implementar a api
   return(
     <MaterialTable
      title="Users List"

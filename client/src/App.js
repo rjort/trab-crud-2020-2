@@ -1,18 +1,32 @@
-import React from 'react';
-import './App.css';
-// import api from './api.js'
+import React from 'react'
+import './App.css'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom'
 
-import UsersTable from './Components/Table/UsersTable.js'
+import UsersCrud from './Components/UsersCrud.js'
+import ResponsiveDrawer from './Components/ResponsiveDrawer.js'
 
 function App() {
-  // state = {
-  //   users: []
-  // }
   return (
     <div className="App">
-      <UsersTable/>
+      <Router>
+        <ResponsiveDrawer/>
+        <Switch>
+          <Route exact path="/">
+            <UsersCrud/>
+          </Route>
+          <Route path="/products">
+            <div className="container">
+              Nothing found
+            </div>
+          </Route>
+        </Switch>
+      </Router>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
