@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 
 import UsersCrud from './Components/UsersCrud.js'
+import ProductsCrud from './Components/ProductsCrud.js'
 import ResponsiveDrawer from './Components/ResponsiveDrawer.js'
 
 function App() {
@@ -19,9 +20,7 @@ function App() {
             <UsersCrud/>
           </Route>
           <Route path="/products">
-            <div className="container">
-              Nothing found
-            </div>
+            <ProductsCrud/>
           </Route>
         </Switch>
       </Router>
