@@ -9,7 +9,6 @@ export const UserSchema = new mongoose.Schema({
   city: String,
   state: String,
   phone: String,
-  birthday: String,
   payment: Boolean,
   created_at: { type: Date, default: Date.now }
 })
