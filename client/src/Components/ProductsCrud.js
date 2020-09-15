@@ -16,7 +16,7 @@ export default function UserTable() {
     },
     { title: 'Price', field: 'price', type: 'numeric', validate: rowData => rowData.price > 0 },
     { title: 'Provider', field: 'provider',
-    validate: rowData => rowData.imageUrl !== '' && rowData.imageUrl !== null && rowData.imageUrl !== undefined 
+    validate: rowData => rowData.provider !== '' && rowData.provider !== null && rowData.provider !== undefined 
     },
     { title: 'Amount', field: 'amount', type: 'numeric', validate: rowData => rowData.amount > 0 },
     { title: 'Barcode', field: 'barCode', type: 'numeric', validate: rowData => rowData.barCode > 0 },
