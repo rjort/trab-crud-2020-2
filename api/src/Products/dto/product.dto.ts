@@ -11,7 +11,7 @@ export class CreateProductDTO {
   @IsNumber()
   readonly price: number
   @IsNotEmpty()
-  readonly imageUrl: string
+  readonly provider: string
   @IsPositive()
   @IsNumber()
   readonly amount: number

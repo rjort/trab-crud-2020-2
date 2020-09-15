@@ -9,7 +9,6 @@ export interface User extends Document {
   readonly city: string
   readonly state: string
   readonly phone: string
-  readonly birthday: string
   readonly payment: boolean
   readonly created_at: Date
 }
