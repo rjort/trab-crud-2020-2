@@ -7,19 +7,19 @@ export default function UserTable() {
   const baseURL = `http://localhost:5000/api/v1/users`
   const col = [
     { title: 'Name', field: 'name', 
-    validate: rowData => rowData.name !== '' && rowDate.name !== null && rowDate.name !== undefined
+    validate: rowData => rowData.name !== '' && rowData.name !== null && rowData.name !== undefined
     },
     { title: 'Email', field: 'email',
-    validate: rowData => rowData.name !== '' && rowDate.email !== null && rowDate.email !== undefined
+    validate: rowData => rowData.name !== '' && rowData.email !== null && rowData.email !== undefined
     },
     { title: 'Phone', field: 'phone',
-    validate: rowData => rowData.phone !== '' && rowDate.phone !== null && rowDate.phone !== undefined
+    validate: rowData => rowData.phone !== '' && rowData.phone !== null && rowData.phone !== undefined
     },
     { title: 'Street', field: 'street',
-    validate: rowData => rowData.street !== '' && rowDate.street !== null && rowDate.street !== undefined
+    validate: rowData => rowData.street !== '' && rowData.street !== null && rowData.street !== undefined
     },
     { title: 'City', field: 'city',
-    validate: rowData => rowData.city !== '' && rowDate.city !== null && rowDate.city !== undefined
+    validate: rowData => rowData.city !== '' && rowData.city !== null && rowData.city !== undefined
     },
     { title: 'Created', field: 'created_at', editable: 'never' }
   ]
