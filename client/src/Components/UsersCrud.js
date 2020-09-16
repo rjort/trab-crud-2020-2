@@ -10,16 +10,16 @@ export default function UserTable() {
     validate: rowData => rowData.name !== '' && rowDate.name !== null && rowDate.name !== undefined
     },
     { title: 'Email', field: 'email',
-    validate: rowData => rowData.name !== '' && rowDate.name !== null && rowDate.name !== undefined
+    validate: rowData => rowData.name !== '' && rowDate.email !== null && rowDate.email !== undefined
     },
     { title: 'Phone', field: 'phone',
-    validate: rowData => rowData.name !== '' && rowDate.name !== null && rowDate.name !== undefined
+    validate: rowData => rowData.phone !== '' && rowDate.phone !== null && rowDate.phone !== undefined
     },
     { title: 'Street', field: 'street',
-    validate: rowData => rowData.name !== '' && rowDate.name !== null && rowDate.name !== undefined
+    validate: rowData => rowData.street !== '' && rowDate.street !== null && rowDate.street !== undefined
     },
     { title: 'City', field: 'city',
-    validate: rowData => rowData.name !== '' && rowDate.name !== null && rowDate.name !== undefined
+    validate: rowData => rowData.city !== '' && rowDate.city !== null && rowDate.city !== undefined
     },
     { title: 'Created', field: 'created_at', editable: 'never' }
   ]
