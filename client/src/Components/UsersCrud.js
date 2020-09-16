@@ -5,11 +5,24 @@ import Axios from 'axios'
 
 export default function UserTable() {
   const baseURL = `http://localhost:5000/api/v1/users`
-  const [col] = useState([
-    { title: 'Name', field: 'name' },
-    { title: 'Email', field: 'email' },
-    { title: 'Phone', field: 'phone' }
-  ])
+  const col = [
+    { title: 'Name', field: 'name', 
+    validate: rowData => rowData.name !== '' && rowDate.name !== null && rowDate.name !== undefined
+    },
+    { title: 'Email', field: 'email',
+    validate: rowData => rowData.name !== '' && rowDate.name !== null && rowDate.name !== undefined
+    },
+    { title: 'Phone', field: 'phone',
+    validate: rowData => rowData.name !== '' && rowDate.name !== null && rowDate.name !== undefined
+    },
+    { title: 'Street', field: 'street',
+    validate: rowData => rowData.name !== '' && rowDate.name !== null && rowDate.name !== undefined
+    },
+    { title: 'City', field: 'city',
+    validate: rowData => rowData.name !== '' && rowDate.name !== null && rowDate.name !== undefined
+    },
+    { title: 'Created', field: 'created_at', editable: 'never' }
+  ]
 
   const [data, setData] = useState([])
 
