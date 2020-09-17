@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsEmail, IsNumberString, IsBoolean } from 'class-validator'
+import { IsNotEmpty } from 'class-validator'
 
 export class CreateUserDTO {
   @IsNotEmpty()
@@ -6,9 +6,7 @@ export class CreateUserDTO {
   @IsNotEmpty()
   readonly last_name: string
   @IsNotEmpty()
-  @IsEmail()
   readonly email: string
-  readonly genre: string
   @IsNotEmpty()
   readonly street: string
   @IsNotEmpty()
@@ -16,9 +14,8 @@ export class CreateUserDTO {
   @IsNotEmpty()
   readonly state: string
   @IsNotEmpty()
-  @IsNumberString()
   readonly phone: string
-  @IsBoolean()
+  @IsNotEmpty()
   readonly payment: boolean
   readonly created_at: Date
 }

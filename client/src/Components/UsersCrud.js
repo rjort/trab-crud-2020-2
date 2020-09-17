@@ -4,13 +4,16 @@ import MaterialTable from 'material-table'
 import Axios from 'axios'
 
 export default function UserTable() {
-  const baseURL = `http://localhost:5000/api/v1/users`
+  const baseURL = 'http://localhost:3000/api/v1/users'
   const col = [
-    { title: 'Name', field: 'name', 
-    validate: rowData => rowData.name !== '' && rowData.name !== null && rowData.name !== undefined
+    { title: 'First name', field: 'first_name', 
+    validate: rowData => rowData.first_name !== '' && rowData.first_name !== null && rowData.first_name !== undefined
+    },
+    { title: 'Last name', field: 'last_name', 
+    validate: rowData => rowData.last_name !== '' && rowData.last_name !== null && rowData.last_name !== undefined
     },
     { title: 'Email', field: 'email',
-    validate: rowData => rowData.name !== '' && rowData.email !== null && rowData.email !== undefined
+    validate: rowData => rowData.email !== '' && rowData.email !== null && rowData.email !== undefined
     },
     { title: 'Phone', field: 'phone',
     validate: rowData => rowData.phone !== '' && rowData.phone !== null && rowData.phone !== undefined
@@ -20,6 +23,12 @@ export default function UserTable() {
     },
     { title: 'City', field: 'city',
     validate: rowData => rowData.city !== '' && rowData.city !== null && rowData.city !== undefined
+    },
+    { title: 'State', field: 'state',
+    validate: rowData => rowData.state !== '' && rowData.state !== null && rowData.state !== undefined
+    },
+    { title: 'Payment', field: 'payment', lookup: { true: 'Yes', false: 'Not' }, 
+    validate: rowData => rowData.payment !== '' && rowData.payment !== null && rowData.payment !== undefined  
     },
     { title: 'Created', field: 'created_at', editable: 'never' }
   ]
@@ -34,32 +43,28 @@ export default function UserTable() {
     fetchData()
   }, [])
 
-  const createUser = (newUser) => {
+  function createUser(newUser) {
     async function fetchUser() {
-      console.log(newUser)
       const res = await Axios.post(baseURL, newUser)
       if(res.status === 200) return res.data
     }
-    fetchUser()
+    return fetchUser()
   }
 
-  const deleteUser = (user) => {
+  function deleteUser(user) {
     async function fetchUser() {
-      console.log(user._id)
       const res = await Axios.delete(`${baseURL}/${user._id}`, user)
-      if(res.status === 200) return res.data
+      if(res.status === 200) return res.status
     }
-    fetchUser()
+    return fetchUser()
   }
 
-  const updateUser = (oldUser, newUser) => {
+  function updateUser(oldUser, newUser) {
     async function fetchUser() {
-      console.log(oldUser)
       const res = await Axios.put(`${baseURL}/${oldUser._id}`, newUser)
-      console.log(res.data)
       if(res.status === 200) return res.data
     }
-    fetchUser()
+    return fetchUser()
   }
 
   return(
@@ -68,41 +73,35 @@ export default function UserTable() {
      columns={col}
      data={data}
      editable={{
-      onRowAdd: (newData) => new Promise((resolve) => {
-          newData = createUser(newData)
-          setTimeout(() => {
-            resolve()
-            setData((prevState) => {
-              const data = [...prevState]
-              if(newData !== null && newData !== undefined) return data.push(newData)
-              return data
-            })
-          }, 600)
-      }),
-      onRowUpdate: (newData, oldData) => new Promise((resolve) => {
-        updateUser(oldData, newData)
-        setTimeout(() => {
-          resolve()
-          if(oldData) {
-            setData((prevState) => {
-              const data = [...prevState]
-              data[data.indexOf(oldData)] = newData
-              return data
-            })
-          }
-        }, 600)
-      }),
-      onRowDelete: (oldData) => new Promise((resolve) => {
-        deleteUser(oldData)
-        setTimeout(() => {
-          resolve()
+      onRowAdd: (newData) => createUser(newData)
+      .then((user) => {
           setData((prevState) => {
-            const data = [...prevState]
-            data.splice(data.indexOf(oldData), 1)
-            return data
+              const data = [...prevState]
+              if (user !== null && user !== undefined) data.push(user)
+              return data
           })
-         }, 600)
-       })
+      }),
+      onRowUpdate: (newData, oldData) => updateUser(oldData, newData)
+      .then((user) => {
+          if(oldData) {
+              setData((prevState) => {
+                  const data = [...prevState]
+                  if (user !== null && user !== undefined) data[data.indexOf(oldData)] = user
+                  return data
+              })
+          }
+      }),
+      onRowDelete: (oldData) => deleteUser(oldData)
+      .then((status) => {
+          let deleted = false
+          if(status === 200) deleted = true
+
+          setData((prevState) => {
+              const data = [...prevState]
+              if(deleted) data.splice(data.indexOf(oldData), 1)
+              return data
+          })
+      })
      }}
      ></MaterialTable>
   )

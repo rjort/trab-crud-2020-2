@@ -4,7 +4,6 @@ export const UserSchema = new mongoose.Schema({
   first_name: String,
   last_name: String,
   email: String,
-  genre: String,
   street: String,
   city: String,
   state: String,

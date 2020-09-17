@@ -4,7 +4,6 @@ export interface User extends Document {
   readonly first_name: string
   readonly last_name: string
   readonly email: string
-  readonly genre: string
   readonly street: string
   readonly city: string
   readonly state: string
